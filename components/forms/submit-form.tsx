@@ -45,7 +45,8 @@ export default function SubmitForm() {
       }
       const data = await response.json();
       
-      router.push('/company-info');
+      // router.push('/company-info');
+      router.push(`/company-info?message=${encodeURIComponent(values.message)}`);
     } catch (error) {
       console.error('Error submitting form:', error);
     }

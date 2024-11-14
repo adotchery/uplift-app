@@ -31,22 +31,23 @@ export function CompanyTable({ company, type }: CompanyTableProps) {
   }
 
   return (
-    <Table className="w-full border border-gray-200 rounded-lg shadow-sm">
-      <TableCaption className="font-semibold text-lg">
+    <Table className="w-full border border-gray-200 rounded-lg shadow-sm text-sm">
+      <TableCaption className="font-semibold text-lg mb-2">
+        {/* {type} Information */}
       </TableCaption>
       <TableHeader>
-        <TableRow>
-          <TableHead className="bg-gray-100"></TableHead>
-          <TableHead className="bg-gray-100"></TableHead>
+        <TableRow className="h-6">
+          <TableHead className="bg-gray-100 text-xs p-1"></TableHead>
+          <TableHead className="bg-gray-100 text-xs p-1"></TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {Object.entries(company as Record<string, string | undefined>).map(([key, value]) => (
-          <TableRow key={key}>
-            <TableCell className="font-medium capitalize">
+          <TableRow key={key} className="h-1"> 
+            <TableCell className="font-medium capitalize p-2">
               {key.replace(/([A-Z])/g, " $1")}
             </TableCell>
-            <TableCell>{value || "N/A"}</TableCell>
+            <TableCell className="p-1">{value || "N/A"}</TableCell> {/* Reduced padding */}
           </TableRow>
         ))}
       </TableBody>

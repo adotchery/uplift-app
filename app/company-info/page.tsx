@@ -1,6 +1,11 @@
+import ClientTreeWrapper from "@/components/company/client-tree-wrapper";
 import CompanyInfo from "@/components/company/company-info-tables";
+import CompanyTree from "@/components/company/company-tree";
+import Image from "next/image";
+import { TreeNode } from "@/types/tree";
 
-async function getCompanyData() {
+
+async function getCompanyData(): Promise<TreeNode[]> {  
   const response = await fetch("http://localhost:3000/api/company-info", {
     cache: "no-store",
   });
@@ -10,13 +15,51 @@ async function getCompanyData() {
   return response.json();
 }
 
-export default async function CompanyInfoPage() {
+export default async function CompanyInfoPage({ searchParams }: { searchParams: { [key: string]: string } }) {
+  const message = searchParams.message;
+
   const companyData = await getCompanyData();
+
 
   return (
     <div className="container mx-auto py-8">
-      <h1 className="flex text-2xl font-bold mb-6">Your uplifted data has been delivered!</h1>
-      <CompanyInfo companyData={companyData} />
+    {message && (
+      <h1 className="text-lg font-semibold text-center mb-4">
+        Submitted Message: {message}
+      </h1>
+    )}
+    <h1 className="flex justify-center text-2xl font-bold mb-6">
+      Your uplifted data has been delivered!
+    </h1>
+    <div className="flex flex-col md:flex-row md:space-x-8">
+        {/* Company Info Table */}
+        <div className="flex-1 mb-8 md:mb-0">
+          <CompanyInfo companyData={companyData} />
+        </div>
+
+        {/* Company Tree Diagram */}
+        <div className="flex-1">
+          <ClientTreeWrapper companyData={companyData} />
+        </div>
+      </div>
+      
+      <footer className="flex items-center justify-center mt-8 w-full text-center">
+        <a
+          href="https://www.huronconsultinggroup.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center space-x-2"
+        >
+          <Image
+            aria-hidden
+            src="/Huron_Vertical-Black.svg"
+            alt="Huron Logo"
+            width={32}
+            height={32}
+          />
+          <h1>Powered by Huron Consulting Group</h1>
+        </a>
+      </footer>
     </div>
   );
 }

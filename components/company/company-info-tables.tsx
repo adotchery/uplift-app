@@ -19,17 +19,17 @@ export default function CompanyInfo({ companyData }: CompanyInfoProps) {
   }, [companyData]);
 
   return (
-    <div className="flex space-x-4">
+    <div className="flex flex-col space-y-8">
       {/* Company Table */}
       <div className="flex-1">
-        <h2 className="text-xl font-semibold mb-2">Company Data</h2>
-        <CompanyTable company={data.company} type="Company" />
+        <h2 className="text-xl font-semibold mb-4">Company Data</h2>
+        <CompanyTable company={data.company}/>
       </div>
 
       {/* Parent Company Table */}
       <div className="flex-1">
-        <h2 className="text-xl font-semibold mb-2">Parent Company Data</h2>
-        <CompanyTable company={data.parent} type="Parent Company" />
+        <h2 className="text-xl font-semibold mb-4">Parent Company Data</h2>
+        <CompanyTable company={data.parent} />
       </div>
     </div>
   );

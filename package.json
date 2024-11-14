@@ -25,6 +25,7 @@
     "next": "15.0.2",
     "next-auth": "^5.0.0-beta.25",
     "react": "19.0.0-rc-02c0e824-20241028",
+    "react-d3-tree": "^3.6.2",
     "react-dom": "19.0.0-rc-02c0e824-20241028",
     "react-hook-form": "^7.53.1",
     "shadcn": "^2.1.4",

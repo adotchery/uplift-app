@@ -5,15 +5,15 @@ let submittedData: any = null;
 
 export async function POST(req: NextRequest) {
   try {
-
     const { content } = await req.json();
-
+    
     // log the  content
     console.log("Received content:", content);
+    
     // creds
     const username = process.env.USERNAME;
     const password = process.env.PASSWORD;
-
+    
     // validate creds
     if (!username || !password) {
       console.error("Missing USERNAME or PASSWORD environment variables");
@@ -27,8 +27,8 @@ export async function POST(req: NextRequest) {
     const authString = Buffer.from(`${username}:${password}`).toString('base64');
 
     // log (remove)
-    console.log("Auth string:", authString); 
-  
+    console.log("Auth string:", authString);
+
 
     const response = await fetch("https://c01-usa-east.integrate-test.boomi.com/ws/rest/dmaAI/chatGPTRequest/", {
       method: 'POST',
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
         'Content-Type': 'application/json',
         'Authorization': `Basic ${authString}`,
       },
-      body: JSON.stringify({content}),
+      body: JSON.stringify({ content }),
     });
 
     // response vaild
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
     const companyData = await response.json();
     // save locally
     setSubmittedData(companyData)
-    
+
     // Log (delete)
     console.log("Boomi API response data:", companyData);
 
