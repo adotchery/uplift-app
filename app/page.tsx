@@ -23,7 +23,7 @@ export default function Home() {
             width={32}
             height={32}
           />
-          <h1>Powered by Huron Consulting Group</h1>
+          <h1>Powered by Global Data Management & Analytics</h1>
         </a>
       </footer>
     </div>

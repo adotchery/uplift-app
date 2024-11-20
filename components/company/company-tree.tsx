@@ -20,7 +20,7 @@ interface CompanyTreeProps {
           data={companyData}
           orientation="vertical"
           translate={{ x: 200, y: 100 }}
-          pathFunc="elbow"
+          pathFunc="step"
           nodeSize={{ x: 250, y: 150 }}
           renderCustomNodeElement={({ nodeDatum }: { nodeDatum: TreeNode }) => (
             <g>
@@ -29,9 +29,9 @@ interface CompanyTreeProps {
                 {nodeDatum.name || "Unnamed Node"}
               </text>
               {nodeDatum.attributes &&
-                Object.entries(nodeDatum.attributes).map(([key, value], i) => (
-                  <text key={i} x="20" y={20 + i * 15} fill="gray">
-                    {key.replace(/_/g, " ")}: {value}
+              Object.entries(nodeDatum.attributes || {}).map(([key, value], i) => (
+                <text key={i} x="20" y={20 + i * 15} fill="gray">
+                  {key.replace(/_/g, " ")}: {value || "N/A"}
                   </text>
                 ))}
             </g>
