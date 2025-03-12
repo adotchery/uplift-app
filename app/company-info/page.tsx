@@ -17,7 +17,7 @@ async function getCompanyData(): Promise<TreeNode[]> {
 export default async function CompanyInfoPage({searchParams}: {
   searchParams: { [key: string]: string };}) 
   {
-  const message = searchParams?.message || "";
+  const message = await searchParams?.message || "";
   const companyData = await getCompanyData();
 
   return (

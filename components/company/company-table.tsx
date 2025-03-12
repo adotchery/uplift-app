@@ -29,7 +29,6 @@ export function CompanyTable({ company, type }: CompanyTableProps) {
   if (!company) {
     return <div>No {`${type}`.toLowerCase()} information available.</div>;
   }
-
   return (
     <Table className="w-full border border-gray-200 rounded-lg shadow-sm text-sm">
       <TableCaption className="font-semibold text-lg mb-2">
@@ -43,11 +42,11 @@ export function CompanyTable({ company, type }: CompanyTableProps) {
       </TableHeader>
       <TableBody>
         {Object.entries(company as Record<string, string | undefined>).map(([key, value]) => (
-          <TableRow key={key} className="h-1"> 
+          <TableRow key={key} className="h-1">
             <TableCell className="font-medium capitalize p-2">
               {key.replace(/([A-Z])/g, " $1")}
             </TableCell>
-            <TableCell className="p-1">{value || "N/A"}</TableCell> {/* Reduced padding */}
+            <TableCell className="p-1">{value || "N/A"}</TableCell>
           </TableRow>
         ))}
       </TableBody>
